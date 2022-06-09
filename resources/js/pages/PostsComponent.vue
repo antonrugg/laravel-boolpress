@@ -7,8 +7,10 @@
             <div v-if="posts.length>0">
                 <PostCardListComponent :posts="posts" />
             </div>
-            <div v-else>
-                Caricamento in corso...
+            <div v-else class="col-12 text-center pt-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
         </div>
     </div>

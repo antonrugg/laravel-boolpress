@@ -2176,6 +2176,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostsComponent',
@@ -38839,13 +38841,22 @@ var render = function () {
             [_c("PostCardListComponent", { attrs: { posts: _vm.posts } })],
             1
           )
-        : _c("div", [
-            _vm._v("\n            Caricamento in corso...\n        "),
-          ]),
+        : _c("div", { staticClass: "col-12 text-center pt-5" }, [_vm._m(0)]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "spinner-border text-primary", attrs: { role: "status" } },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+    )
+  },
+]
 render._withStripped = true
 
 
