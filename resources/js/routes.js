@@ -2,7 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import HomeComponent from './pages/HomeComponent';
+import ContactsComponent from './pages/ContactsComponent';
 import NotFoundComponent from './pages/NotFoundComponent';
+import PostsComponent from './pages/PostsComponent';
+import ChiSiamoComponent from './pages/ChiSiamoComponent';
 
 Vue.use(VueRouter);
 
@@ -17,7 +20,17 @@ const router = new VueRouter({
         {
             path: '/posts',
             name: 'posts',
-            component: NotFoundComponent
+            component: PostsComponent
+        },
+        {
+            path: '/contacts',
+            name: 'contacts',
+            component: ContactsComponent
+        },
+        {
+            path: '/chi-siamo',
+            name: 'chi-siamo',
+            component: ChiSiamoComponent
         },
         {
             path: '/*',
