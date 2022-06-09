@@ -1977,17 +1977,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'NavbarComponent'
+  name: 'NavbarComponent',
+  data: function data() {
+    return {
+      navLinks: [{
+        linkName: 'home',
+        label: 'Home'
+      }, {
+        linkName: 'posts',
+        label: 'Posts'
+      }, {
+        linkName: 'contacts',
+        label: 'Contatti'
+      }, {
+        linkName: 'chi-siamo',
+        label: 'Chi siamo'
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -37762,65 +37770,28 @@ var render = function () {
         "div",
         { staticClass: "collapse navbar-collapse", attrs: { id: "navbarNav" } },
         [
-          _c("ul", { staticClass: "navbar-nav" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "home" } } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "posts" } } },
-                  [_vm._v("Posts")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "contacts" } },
-                  },
-                  [_vm._v("Contatti")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "chi-siamo" } },
-                  },
-                  [_vm._v("Chi siamo")]
-                ),
-              ],
-              1
-            ),
-          ]),
+          _c(
+            "ul",
+            { staticClass: "navbar-nav" },
+            _vm._l(_vm.navLinks, function (navLink, index) {
+              return _c(
+                "li",
+                { key: index, staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: navLink.linkName } },
+                    },
+                    [_vm._v(_vm._s(navLink.label))]
+                  ),
+                ],
+                1
+              )
+            }),
+            0
+          ),
         ]
       ),
     ]

@@ -6,17 +6,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'home'}">Home</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'posts'}">Posts</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'contacts'}">Contatti</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'chi-siamo'}">Chi siamo</router-link>
+      <li class="nav-item" v-for="(navLink, index) in navLinks" :key="index">
+        <router-link class="nav-link" :to="{ name: navLink.linkName}">{{navLink.label}}</router-link>
       </li>
     </ul>
   </div>
@@ -25,7 +16,17 @@
 
 <script>
 export default {
-    name: 'NavbarComponent'
+    name: 'NavbarComponent',
+    data(){
+        return{
+            navLinks: [
+                {linkName: 'home', label: 'Home'},
+                {linkName: 'posts', label: 'Posts'},
+                {linkName: 'contacts', label: 'Contatti'},
+                {linkName: 'chi-siamo', label: 'Chi siamo'},
+            ]
+        }
+    }
 }
 </script>
 
