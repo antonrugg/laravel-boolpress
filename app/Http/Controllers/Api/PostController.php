@@ -18,9 +18,9 @@ class PostController extends Controller
         //
         $posts = Post::all();
 
-        $result = ['result'=>$posts, 'success'=>true];
+        $result = ['results'=>$posts, 'success'=>true];
 
-        return response()->json($posts);
+        return response()->json($result);
     }
 
     /**
