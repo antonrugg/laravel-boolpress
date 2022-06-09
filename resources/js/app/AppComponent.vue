@@ -1,6 +1,6 @@
 <template>
   <div>
-      Work in progress vue component
+      <router-view></router-view>
   </div>
 </template>
 
