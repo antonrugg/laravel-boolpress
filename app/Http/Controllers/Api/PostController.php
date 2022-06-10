@@ -17,7 +17,8 @@ class PostController extends Controller
     {
         //
         // $posts = Post::all();
-        $posts = Post::with('category')->get();
+        // $posts = Post::with('category')->get();
+        $posts = Post::paginate(4);
 
         $result = ['results'=>$posts, 'success'=>true];
 

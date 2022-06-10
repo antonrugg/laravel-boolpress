@@ -6,7 +6,8 @@
             </div>
             <div v-if="post" class="col-12 mb-2">
             <h2><span>Title: </span>{{ post.title }}</h2>
-            <img :src="'/storage/' + post.cover" :alt="post.title">
+            <img v-if="post.cover" :src="'/storage/' + post.cover" :alt="post.title">
+            <img v-else src="https://picsum.photos/200/" :alt="post.title">
             <p><span>Contenuto: </span>{{ post.content }}</p>
             <div>
                 <h3>Tags:</h3>

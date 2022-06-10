@@ -2184,6 +2184,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostsComponent',
@@ -2192,23 +2200,52 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      currentPage: 1,
+      lastPage: 1,
+      previousPageLink: '',
+      nextPageLink: '',
+      lastPageLink: '',
+      firstPageLink: ''
     };
   },
   mounted: function mounted() {
-    var _this = this;
+    this.loadPage('http://127.0.0.1:8000/api/posts');
+  },
+  methods: {
+    loadPage: function loadPage(url) {
+      var _this = this;
 
-    window.axios.get('http://127.0.0.1:8000/api/posts').then(function (_ref) {
-      var status = _ref.status,
-          data = _ref.data;
-      console.log(data);
+      window.axios.get(url).then(function (_ref) {
+        var status = _ref.status,
+            data = _ref.data;
+        console.log(data);
 
-      if (status === 200 && data.success) {
-        _this.posts = data.results;
-      }
-    })["catch"](function (e) {
-      console.log(e);
-    });
+        if (status === 200 && data.success) {
+          _this.posts = data.results.data;
+          _this.currentPage = data.results.current_page;
+          _this.lastPage = data.results.last_page;
+          _this.previousPageLink = data.results.prev_page_url;
+          _this.nextPageLink = data.results.next_page_url;
+          _this.lastPageLink = data.results.last_page_url;
+          _this.firstPageLink = data.results.first_page_url;
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    goNextPage: function goNextPage() {
+      this.loadPage(this.nextPageLink);
+    },
+    goPreviousPage: function goPreviousPage() {
+      this.loadPage(this.previousPageLink);
+    },
+    goFirstPage: function goFirstPage() {
+      this.loadPage(this.firstPageLink);
+    },
+    goLastPage: function goLastPage() {
+      this.loadPage(this.lastPageLink);
+    }
   }
 });
 
@@ -2223,6 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -38983,7 +39021,65 @@ var render = function () {
       _vm.posts.length > 0
         ? _c(
             "div",
-            [_c("PostCardListComponent", { attrs: { posts: _vm.posts } })],
+            [
+              _c("PostCardListComponent", { attrs: { posts: _vm.posts } }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.goFirstPage()
+                    },
+                  },
+                },
+                [_vm._v("First Page")]
+              ),
+              _vm._v(" "),
+              _vm.previousPageLink
+                ? _c(
+                    "button",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.goPreviousPage()
+                        },
+                      },
+                    },
+                    [_vm._v("Prev")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.nextPageLink
+                ? _c(
+                    "button",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.goNextPage()
+                        },
+                      },
+                    },
+                    [_vm._v("Next")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.goLastPage()
+                    },
+                  },
+                },
+                [_vm._v("Last Page")]
+              ),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.lastPage)),
+              ]),
+            ],
             1
           )
         : _c("div", { staticClass: "col-12 text-center pt-5" }, [_vm._m(0)]),
@@ -39036,9 +39132,19 @@ var render = function () {
               _vm._v(_vm._s(_vm.post.title)),
             ]),
             _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/storage/" + _vm.post.cover, alt: _vm.post.title },
-            }),
+            _vm.post.cover
+              ? _c("img", {
+                  attrs: {
+                    src: "/storage/" + _vm.post.cover,
+                    alt: _vm.post.title,
+                  },
+                })
+              : _c("img", {
+                  attrs: {
+                    src: "https://picsum.photos/200/",
+                    alt: _vm.post.title,
+                  },
+                }),
             _vm._v(" "),
             _c("p", [
               _c("span", [_vm._v("Contenuto: ")]),
