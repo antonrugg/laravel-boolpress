@@ -6,6 +6,8 @@ import ContactsComponent from './pages/ContactsComponent';
 import NotFoundComponent from './pages/NotFoundComponent';
 import PostsComponent from './pages/PostsComponent';
 import ChiSiamoComponent from './pages/ChiSiamoComponent';
+import SinglePostComponent from './pages/SinglePostComponent';
+
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,11 @@ const router = new VueRouter({
             path: '/posts',
             name: 'posts',
             component: PostsComponent
+        },
+        {
+            path: '/posts/:id',
+            name: 'single-post',
+            component: SinglePostComponent
         },
         {
             path: '/contacts',
