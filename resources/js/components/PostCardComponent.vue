@@ -20,9 +20,7 @@ export default {
        min-height: 300px;
        width: calc((100% / 4) - 2rem);
 
-    //    .card-img-top{
-    //        min-height: ;
-    //    }
+       
    }
 
 </style>
