@@ -2301,8 +2301,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    var id = this.$route.params.id;
-    window.axios.get('http://127.0.0.1:8000/api/posts/' + id).then(function (_ref) {
+    var slug = this.$route.params.slug;
+    window.axios.get('http://127.0.0.1:8000/api/posts/' + slug).then(function (_ref) {
       var status = _ref.status,
           data = _ref.data;
       console.log(data);
@@ -38809,7 +38809,11 @@ var render = function () {
       _vm._v(" "),
       _c(
         "router-link",
-        { attrs: { to: { name: "single-post", params: { id: _vm.post.id } } } },
+        {
+          attrs: {
+            to: { name: "single-post", params: { slug: _vm.post.slug } },
+          },
+        },
         [_vm._v("Visualizza dettaglio")]
       ),
     ],
@@ -55522,7 +55526,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'posts',
     component: _pages_PostsComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: '/posts/:id',
+    path: '/posts/:slug',
     name: 'single-post',
     component: _pages_SinglePostComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
