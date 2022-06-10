@@ -10,7 +10,7 @@
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.content }}</p>
         </div>
-        <router-link :to="{ name: 'single-post', params: { id } }">Visualizza dettaglio</router-link>
+        <router-link :to="{ name: 'single-post', params: { id: post.id } }">Visualizza dettaglio</router-link>
     </div>
 </template>
 

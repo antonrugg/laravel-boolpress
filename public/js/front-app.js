@@ -2229,9 +2229,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SinglePostComponent',
-  mounted: {}
+  data: function data() {
+    return {
+      post: undefined
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var id = this.$route.params.id;
+    window.axios.get('http://127.0.0.1:8000/api/posts/' + id).then(function (_ref) {
+      var status = _ref.status,
+          data = _ref.data;
+      console.log(data);
+
+      if (status === 200 && data.success) {
+        _this.post = data.results;
+      }
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }
 });
 
 /***/ }),
@@ -38678,7 +38710,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "router-link",
-        { attrs: { to: { name: "single-post", params: { id: _vm.id } } } },
+        { attrs: { to: { name: "single-post", params: { id: _vm.post.id } } } },
         [_vm._v("Visualizza dettaglio")]
       ),
     ],
@@ -38930,9 +38962,32 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [_vm._v("\n    Sono il dettaglio!\n")])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 text-center" }, [
+        _vm._v("\n            Posts\n        "),
+      ]),
+      _vm._v(" "),
+      _vm.post
+        ? _c("div", [
+            _vm._v("\n           " + _vm._s(_vm.post.title) + "\n        "),
+          ])
+        : _c("div", { staticClass: "col-12 text-center pt-5" }, [_vm._m(0)]),
+    ]),
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "spinner-border text-primary", attrs: { role: "status" } },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+    )
+  },
+]
 render._withStripped = true
 
 
