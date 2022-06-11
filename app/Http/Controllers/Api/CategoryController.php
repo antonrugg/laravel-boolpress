@@ -50,11 +50,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
-        $category = Category::findOrFail($id);
+        $category = Category::where('slug', $slug)->with('posts')->first();
         $result = ['result'=>$category, 'success'=>true];
+        // $category = Category::find($id);
+        // $posts = Post::where('category_id', $id)->paginate(4);
+        // $aggregateData = [
+        //     'category' => $category,
+        //     'posts' => $posts
+        // ];
+        // $result = ['result'=>$aggregateData, 'success'=>true];
 
         return response()->json($result);
     }

@@ -7,6 +7,8 @@ import NotFoundComponent from './pages/NotFoundComponent';
 import PostsComponent from './pages/PostsComponent';
 import ChiSiamoComponent from './pages/ChiSiamoComponent';
 import SinglePostComponent from './pages/SinglePostComponent';
+import CategoriesComponent from './pages/CategoriesComponent';
+import PostsPerCategoryComponent from './pages/PostsPerCategoryComponent';
 
 
 Vue.use(VueRouter);
@@ -28,6 +30,16 @@ const router = new VueRouter({
             path: '/posts/:slug',
             name: 'single-post',
             component: SinglePostComponent
+        },
+        {
+            path: '/categories',
+            name: 'categories',
+            component: CategoriesComponent
+        },
+         {
+            path: '/categories/:id',
+            name: 'post-per-category',
+            component: PostsPerCategoryComponent
         },
         {
             path: '/contacts',

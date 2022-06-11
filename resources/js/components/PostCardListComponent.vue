@@ -1,6 +1,6 @@
 <template>
     <section>
-        <PostCardComponent :post="post" v-for="(post, index) in posts" :key="index"/>
+        <PostCardComponent :post="post" :category="category" v-for="(post, index) in posts" :key="index"/>
     </section>
 </template>
 

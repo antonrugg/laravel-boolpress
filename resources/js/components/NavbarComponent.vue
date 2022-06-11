@@ -24,6 +24,7 @@ export default {
                 {linkName: 'posts', label: 'Posts'},
                 {linkName: 'contacts', label: 'Contatti'},
                 {linkName: 'chi-siamo', label: 'Chi siamo'},
+                {linkName: 'categories', label: 'Categorie'}
             ]
         }
     }
